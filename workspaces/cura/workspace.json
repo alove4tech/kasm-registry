@@ -28,10 +28,6 @@
       "version": "1.17.x",
       "image": "lscr.io/linuxserver/cura:latest",
       "uncompressed_size_mb": 3277,
-      "available_tags": [
-        "latest",
-        "version-5.7.2"
-      ]
     }
   ]
 }
