@@ -11,7 +11,7 @@ const nextConfig = {
     contactUrl: 'https://alove4tech.github.com/alove4tech/kasm-registry/issues',
   },
   reactStrictMode: true,
-  basePath: '/1.0',
+  basePath: '/kasm-registry/1.1',
   trailingSlash: true,
   images: {
     unoptimized: true,
