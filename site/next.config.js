@@ -7,11 +7,11 @@ const nextConfig = {
     name: 'Alove 4 Tech',
     description: 'Kasm workspace registry provided by Alove4Tech.',
     icon: '/img/logo.svg',
-    listUrl: 'https://alove4tech.github.io/kasm-registry/',
+    listUrl: 'https://alove4tech.github.io/kasm-registry/1.1/',
     contactUrl: 'https://alove4tech.github.com/alove4tech/kasm-registry/issues',
   },
   reactStrictMode: true,
-  basePath: '/kasm-registry/1.0',
+  basePath: '/1.0',
   trailingSlash: true,
   images: {
     unoptimized: true,
