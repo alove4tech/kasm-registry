@@ -50,3 +50,5 @@ test-timings.json
 # Cache
 *.tsbuildinfo
 .swc/
+.scripts/*.log
+.scripts/review.log
