@@ -1,17 +1,19 @@
 # build output
-dist
-public
-!site/public
-site/public/icons
-site/public/list.json
-.next
-target
-packages/next/wasm/@next
-out
-private
+/dist
+/public
+!/site/public
+/site/public/icons
+/site/public/list.json
+/.next
+/target
+/packages/next/wasm/@next
+/out
+/private
 
 # dependencies
 node_modules
+site/node_modules
+processing/node_modules
 
 # logs & pids
 *.log
