@@ -9,7 +9,7 @@ function Workspace({ Component, pageProps, workspace }) {
             query: { workspace: btoa(workspace.friendly_name)}
         })
     }
-    
+
     return (
         <div onClick={() => viewexample(workspace)} className="w-[245px] h-[88px] transition-all relative cursor-pointer group flex p-2 items-center justify-center bg-slate-100/90 shadow rounded hover:shadow-xl hover:bg-gradient-to-r hover:from-[#162d48] hover:to-[#2980b9] hover:text-white">
             <div className="w-full h-full">

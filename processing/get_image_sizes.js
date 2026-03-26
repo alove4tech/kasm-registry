@@ -36,7 +36,7 @@ glob("../workspaces/**/workspace.json", function (err, files) {
 			} else {
 				console.log(parsed.friendly_name + ' - ' + element.version + ': skipped')
 			}
-			
+
 		})
 
 	}
