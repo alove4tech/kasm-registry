@@ -61,8 +61,8 @@ export default function Home({ searchText }) {
   return (
     <div className="">
       <Head>
-        <title>Kasm Workspaces</title>
-        <meta name="description" content="List of workspaces for Kasm Webspaces" />
+        <title>Aaron's Kasm Registry</title>
+        <meta name="description" content="ARM-first custom Kasm workspace registry with curated browser and desktop workspaces." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
