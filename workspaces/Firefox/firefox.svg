@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Firefox icon">
+  <defs>
+    <linearGradient id="ff-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="ff-flame" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffb703"/>
+      <stop offset="50%" stop-color="#fb8500"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#ff-bg)"/>
+  <circle cx="66" cy="68" r="28" fill="#93c5fd" opacity="0.95"/>
+  <path d="M87 38c-7 1-16 7-22 15 5-2 12-1 17 2-14 0-28 11-30 26-2 17 11 31 29 31 17 0 31-13 31-30 0-11-6-21-15-27 1-5-1-11-10-17z" fill="url(#ff-flame)"/>
+  <path d="M50 92c3 8 11 14 21 14 14 0 25-10 25-24 0-7-3-14-9-18 1 10-7 20-19 20-7 0-14-3-18-9-2 5-2 11 0 17z" fill="#fde68a" opacity="0.9"/>
+</svg>

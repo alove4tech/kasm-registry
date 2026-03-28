@@ -15,7 +15,7 @@ function Workspace({ Component, pageProps, workspace }) {
             <div className="w-full h-full">
                 <div className="show-grid flex h-full items-center">
                     <div className="kasmcard-img flex h-full mx-4 items-center justify-center">
-                        <img className="w-[50px] max-h-[66px]" src={ 'icons/' + workspace.image_src} />
+                        <img className="w-[50px] max-h-[66px]" src={`${router.basePath}/icons/${workspace.image_src}`} alt={workspace.friendly_name} />
                     </div>
                     <div className="kasmcard-detail settingPad">
                         <h5 className="text-base">{ workspace.friendly_name }</h5>

@@ -1,7 +1,7 @@
 {
   "description": "General-purpose Ubuntu desktop workspace for ARM64-based Kasm deployments.",
   "docker_registry": "https://index.docker.io/v1/",
-  "image_src": "ubuntu-desktop.png",
+  "image_src": "ubuntu-desktop.svg",
   "run_config": {
     "hostname": "kasm"
   },

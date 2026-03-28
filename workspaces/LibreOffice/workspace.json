@@ -1,7 +1,7 @@
 {
   "description": "LibreOffice productivity workspace for ARM64-based Kasm deployments.",
   "docker_registry": "https://index.docker.io/v1/",
-  "image_src": "libreoffice.png",
+  "image_src": "libreoffice.svg",
   "run_config": {
     "hostname": "kasm"
   },

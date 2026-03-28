@@ -1,7 +1,7 @@
 {
   "description": "Mozilla Firefox browser workspace for ARM64-based Kasm deployments.",
   "docker_registry": "https://index.docker.io/v1/",
-  "image_src": "firefox.png",
+  "image_src": "firefox.svg",
   "run_config": {
     "hostname": "kasm"
   },

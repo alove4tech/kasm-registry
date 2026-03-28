@@ -96,7 +96,7 @@ export default function New({ workspace }) {
         setArchitecture(archMap)
       }
 
-      setInlineImage('../../icons/' + workspaceDetails.image_src)
+      setInlineImage(`${router.basePath}/icons/${workspaceDetails.image_src}`)
 
       setCombined({
         ...combined,
