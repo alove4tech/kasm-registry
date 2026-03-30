@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ubuntu Desktop icon">
+  <defs>
+    <linearGradient id="ub-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7c2d12"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#ub-bg)"/>
+  <circle cx="64" cy="64" r="28" fill="none" stroke="#fff7ed" stroke-width="10"/>
+  <circle cx="64" cy="30" r="7" fill="#fff7ed"/>
+  <circle cx="94" cy="81" r="7" fill="#fff7ed"/>
+  <circle cx="34" cy="81" r="7" fill="#fff7ed"/>
+  <path d="M64 37v-9M88 76l8 4M40 76l-8 4" stroke="#fff7ed" stroke-width="6" stroke-linecap="round"/>
+</svg>
