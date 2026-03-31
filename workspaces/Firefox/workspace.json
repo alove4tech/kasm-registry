@@ -28,6 +28,14 @@
       "available_tags": [
         "1.17.0"
       ]
+    },
+    {
+      "version": "1.18.x",
+      "image": "kasmweb/firefox:1.18.0",
+      "uncompressed_size_mb": 1600,
+      "available_tags": [
+        "1.18.0"
+      ]
     }
   ],
   "notes": "Validated against Kasm docs and manifest as ARM64-capable. Image size is an estimate until measured locally."

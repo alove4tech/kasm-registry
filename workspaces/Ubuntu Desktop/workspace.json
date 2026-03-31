@@ -29,6 +29,14 @@
       "available_tags": [
         "1.17.0"
       ]
+    },
+    {
+      "version": "1.18.x",
+      "image": "kasmweb/ubuntu-jammy-desktop:1.18.0",
+      "uncompressed_size_mb": 3200,
+      "available_tags": [
+        "1.18.0"
+      ]
     }
   ],
   "notes": "Validated against Kasm docs as ARM64-capable. Uncompressed size is measured separately."

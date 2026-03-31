@@ -115,14 +115,15 @@ export default function New({ workspace }) {
   const customStyles = {
     control: (base, state) => ({
       ...base,
-      background: "#f1f5f9",
+      background: "#0f172a",
+      color: "#e2e8f0",
       borderRadius: '0.5rem',
-      borderColor: "#94a3b8"
+      borderColor: "#334155"
     }),
     multiValue: (styles, { data }) => {
       return {
         ...styles,
-        backgroundColor: '#dde6f1',
+        backgroundColor: '#1e293b',
       };
     }
   }
