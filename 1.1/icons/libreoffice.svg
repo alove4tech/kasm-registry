@@ -1,12 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="LibreOffice icon">
-  <defs>
-    <linearGradient id="lo-bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#166534"/>
-      <stop offset="100%" stop-color="#22c55e"/>
-    </linearGradient>
-  </defs>
-  <rect width="128" height="128" rx="28" fill="url(#lo-bg)"/>
-  <path d="M35 24h40l18 18v62H35z" fill="#ffffff"/>
-  <path d="M75 24v18h18" fill="#dcfce7"/>
-  <path d="M48 58h32M48 72h32M48 86h22" stroke="#16a34a" stroke-width="8" stroke-linecap="round"/>
+  <rect width="128" height="128" rx="28" fill="#0f172a"/>
+  <path d="M34 22h43l20 20v64H34z" fill="#ffffff"/>
+  <path d="M77 22v20h20" fill="#d1fae5"/>
+  <path d="M50 56h30M50 70h30M50 84h21" stroke="#18a303" stroke-width="8" stroke-linecap="round"/>
+  <path d="M34 22h43l20 20v64H34z" fill="none" stroke="#18a303" stroke-width="4" stroke-linejoin="round"/>
 </svg>
