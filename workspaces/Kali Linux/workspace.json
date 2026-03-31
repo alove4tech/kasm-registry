@@ -1,14 +1,14 @@
 {
-  "description": "LibreOffice productivity suite for ARM64 Kasm deployments.",
+  "description": "Kali Linux rolling desktop workspace for ARM64 Kasm deployments.",
   "docker_registry": "https://index.docker.io/v1/",
-  "image_src": "libreoffice.svg",
+  "image_src": "kali-linux.svg",
   "categories": [
-    "Productivity",
-    "Office"
+    "Desktop",
+    "Security"
   ],
-  "friendly_name": "LibreOffice",
+  "friendly_name": "Kali Linux",
   "cores": 2,
-  "memory": 2768,
+  "memory": 4096,
   "gpu_count": 0,
   "cpu_allocation_method": "Inherit",
   "run_config": {
@@ -31,8 +31,8 @@
   "compatibility": [
     {
       "version": "1.17.x",
-      "image": "kasmweb/libre-office:1.17.0-rolling-daily",
-      "uncompressed_size_mb": 2200,
+      "image": "kasmweb/kali-rolling-desktop:1.17.0-rolling-daily",
+      "uncompressed_size_mb": 3600,
       "available_tags": [
         "develop",
         "1.17.0",
@@ -42,8 +42,8 @@
     },
     {
       "version": "1.18.x",
-      "image": "kasmweb/libre-office:1.18.0-rolling-daily",
-      "uncompressed_size_mb": 2200,
+      "image": "kasmweb/kali-rolling-desktop:1.18.0-rolling-daily",
+      "uncompressed_size_mb": 3600,
       "available_tags": [
         "develop",
         "1.18.0",

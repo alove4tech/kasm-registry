@@ -89,13 +89,28 @@ For a repo named `kasm-registry`, the current site config uses:
 
 If the repo name or publishing strategy changes, update `site/next.config.js`.
 
+## Registry conventions
+
+### Workspace channel pattern
+
+This registry standardizes workspace channels when upstream image tags exist.
+
+For each supported Kasm version, use:
+
+- `develop`
+- `<version>.0`
+- `<version>.0-rolling-weekly`
+- `<version>.0-rolling-daily`
+
+This keeps workspace install options consistent across the registry.
+
 ## Recommended next steps
 
 - Add a project logo/icon under `site/public/`
 - Replace placeholder branding in `site/next.config.js` if needed
 - Add first real workspace folders under `workspaces/`
 - Test generation and GitHub Pages output
-- Document any registry-specific conventions once the first few workspaces exist
+- Keep new workspaces aligned with the registry channel convention
 
 ## Notes
 

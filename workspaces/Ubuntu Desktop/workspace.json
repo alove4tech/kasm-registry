@@ -1,7 +1,16 @@
 {
-  "description": "General-purpose Ubuntu desktop workspace for ARM64-based Kasm deployments.",
+  "description": "General-purpose Ubuntu desktop workspace for ARM64 Kasm deployments.",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "ubuntu-desktop.svg",
+  "categories": [
+    "Desktop",
+    "Productivity"
+  ],
+  "friendly_name": "Ubuntu Desktop",
+  "cores": 2,
+  "memory": 2768,
+  "gpu_count": 0,
+  "cpu_allocation_method": "Inherit",
   "run_config": {
     "hostname": "kasm"
   },
@@ -13,31 +22,35 @@
       "cmd": "bash -c '/dockerstartup/custom_startup.sh --assign --url \"$KASM_URL\"'"
     }
   },
-  "categories": [
-    "Desktop",
-    "Productivity"
-  ],
-  "friendly_name": "Ubuntu Desktop",
+  "require_gpu": false,
+  "enabled": true,
+  "image_type": "Container",
   "architecture": [
     "arm64"
   ],
   "compatibility": [
     {
       "version": "1.17.x",
-      "image": "kasmweb/ubuntu-jammy-desktop:1.17.0",
+      "image": "kasmweb/ubuntu-jammy-desktop:1.17.0-rolling-daily",
       "uncompressed_size_mb": 3200,
       "available_tags": [
-        "1.17.0"
+        "develop",
+        "1.17.0",
+        "1.17.0-rolling-weekly",
+        "1.17.0-rolling-daily"
       ]
     },
     {
       "version": "1.18.x",
-      "image": "kasmweb/ubuntu-jammy-desktop:1.18.0",
+      "image": "kasmweb/ubuntu-jammy-desktop:1.18.0-rolling-daily",
       "uncompressed_size_mb": 3200,
       "available_tags": [
-        "1.18.0"
+        "develop",
+        "1.18.0",
+        "1.18.0-rolling-weekly",
+        "1.18.0-rolling-daily"
       ]
     }
   ],
-  "notes": "Validated against Kasm docs as ARM64-capable. Uncompressed size is measured separately."
+  "notes": "Validated against Kasm docs and manifest as ARM64-capable."
 }

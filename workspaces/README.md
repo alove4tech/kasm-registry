@@ -45,6 +45,26 @@ Not required by Kasm, but useful for humans. Include:
 - Keep icon filenames simple and lowercase
 - Match `image_src` in `workspace.json` exactly
 
+## Channel convention
+
+This registry uses a consistent channel pattern for every workspace whenever upstream tags exist.
+
+For each supported Kasm version, prefer:
+
+- `develop`
+- `<version>.0`
+- `<version>.0-rolling-weekly`
+- `<version>.0-rolling-daily`
+
+Example for `1.18.x`:
+
+- `develop`
+- `1.18.0`
+- `1.18.0-rolling-weekly`
+- `1.18.0-rolling-daily`
+
+If an upstream image does not actually publish one of these tags, document the exception in the workspace README and use the closest valid pattern.
+
 ## Authoring checklist
 
 Before committing a new workspace:
@@ -58,6 +78,7 @@ Before committing a new workspace:
 - image names/tags are correct
 - size values are populated when applicable
 - categories are limited and sensible
+- channel tags follow the registry convention unless documented otherwise
 
 ## Placeholder
 
