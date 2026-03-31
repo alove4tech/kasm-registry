@@ -1,17 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Firefox icon">
   <defs>
-    <linearGradient id="ff-bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#1e3a8a"/>
-      <stop offset="100%" stop-color="#7c3aed"/>
-    </linearGradient>
+    <radialGradient id="ff-orb" cx="38%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#7dd3fc"/>
+      <stop offset="45%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </radialGradient>
     <linearGradient id="ff-flame" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#ffb703"/>
-      <stop offset="50%" stop-color="#fb8500"/>
-      <stop offset="100%" stop-color="#ef4444"/>
+      <stop offset="0%" stop-color="#ffcb52"/>
+      <stop offset="28%" stop-color="#ff9f1c"/>
+      <stop offset="62%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#e11d48"/>
+    </linearGradient>
+    <linearGradient id="ff-tail" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd166"/>
+      <stop offset="100%" stop-color="#fb7185"/>
     </linearGradient>
   </defs>
-  <rect width="128" height="128" rx="28" fill="url(#ff-bg)"/>
-  <circle cx="66" cy="68" r="28" fill="#93c5fd" opacity="0.95"/>
-  <path d="M87 38c-7 1-16 7-22 15 5-2 12-1 17 2-14 0-28 11-30 26-2 17 11 31 29 31 17 0 31-13 31-30 0-11-6-21-15-27 1-5-1-11-10-17z" fill="url(#ff-flame)"/>
-  <path d="M50 92c3 8 11 14 21 14 14 0 25-10 25-24 0-7-3-14-9-18 1 10-7 20-19 20-7 0-14-3-18-9-2 5-2 11 0 17z" fill="#fde68a" opacity="0.9"/>
+  <rect width="128" height="128" rx="28" fill="#0f172a"/>
+  <circle cx="67" cy="67" r="31" fill="url(#ff-orb)"/>
+  <path d="M92 37c-7 1-16 7-23 15 6-1 12 0 18 3-16 0-31 12-33 29-2 17 11 31 29 31 20 0 35-15 35-35 0-14-8-27-20-34 1-5-1-10-6-14z" fill="url(#ff-flame)"/>
+  <path d="M55 97c5 6 13 10 22 10 14 0 25-10 25-24 0-7-3-14-8-19 0 12-9 22-22 22-7 0-13-2-18-7-1 7-1 13 1 18z" fill="url(#ff-tail)" opacity="0.95"/>
+  <path d="M86 42c-2 1-4 2-6 4 4 0 8 1 11 3-1-3-2-5-5-7z" fill="#fff7ed" opacity="0.65"/>
 </svg>
