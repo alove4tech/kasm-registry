@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Hermes Agent
+Comment=Launch Hermes Agent terminal environment
+Exec=/usr/local/bin/hermes-desktop-launcher.sh
+Icon=utilities-terminal
+Terminal=false
+Categories=Development;Utility;
+StartupNotify=true

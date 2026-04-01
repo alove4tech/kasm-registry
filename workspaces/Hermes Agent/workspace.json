@@ -1,0 +1,48 @@
+{
+  "description": "Hermes Agent workspace scaffold for ARM64 Kasm deployments. Intended for a future custom image build.",
+  "docker_registry": "https://index.docker.io/v1/",
+  "image_src": "hermes-agent.svg",
+  "categories": [
+    "Development",
+    "Productivity"
+  ],
+  "friendly_name": "Hermes Agent",
+  "cores": 2,
+  "memory": 4096,
+  "gpu_count": 0,
+  "cpu_allocation_method": "Inherit",
+  "run_config": {
+    "hostname": "kasm"
+  },
+  "require_gpu": false,
+  "enabled": false,
+  "image_type": "Container",
+  "architecture": [
+    "arm64"
+  ],
+  "compatibility": [
+    {
+      "version": "1.17.x",
+      "image": "kasmweb/terminal:1.17.0-rolling-daily",
+      "uncompressed_size_mb": 1800,
+      "available_tags": [
+        "develop",
+        "1.17.0",
+        "1.17.0-rolling-weekly",
+        "1.17.0-rolling-daily"
+      ]
+    },
+    {
+      "version": "1.18.x",
+      "image": "kasmweb/terminal:1.18.0-rolling-daily",
+      "uncompressed_size_mb": 1800,
+      "available_tags": [
+        "develop",
+        "1.18.0",
+        "1.18.0-rolling-weekly",
+        "1.18.0-rolling-daily"
+      ]
+    }
+  ],
+  "notes": "Placeholder scaffold only. Disabled until a dedicated Hermes-capable custom image is built and validated."
+}
