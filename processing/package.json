@@ -1,5 +1,5 @@
 {
-  "name": "Kasm-Apps",
+  "name": "kasm-registry-processing",
   "version": "1.0.0",
   "description": "Generate json file",
   "main": "processjson.js",
@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {},
   "devDependencies": {
     "folder-hash": "^4.0.2",
