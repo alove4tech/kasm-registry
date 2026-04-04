@@ -1,0 +1,55 @@
+{
+  "description": "Discord desktop workspace for AMD64 Kasm deployments.",
+  "docker_registry": "https://index.docker.io/v1/",
+  "image_src": "discord.svg",
+  "categories": [
+    "Communication"
+  ],
+  "friendly_name": "Discord",
+  "cores": 2,
+  "memory": 2768,
+  "gpu_count": 0,
+  "cpu_allocation_method": "Inherit",
+  "run_config": {
+    "hostname": "kasm"
+  },
+  "exec_config": {
+    "go": {
+      "cmd": "bash -c '/dockerstartup/custom_startup.sh --go --url \"$KASM_URL\"'"
+    },
+    "assign": {
+      "cmd": "bash -c '/dockerstartup/custom_startup.sh --assign --url \"$KASM_URL\"'"
+    }
+  },
+  "require_gpu": false,
+  "enabled": true,
+  "image_type": "Container",
+  "architecture": [
+    "amd64"
+  ],
+  "compatibility": [
+    {
+      "version": "1.17.x",
+      "image": "kasmweb/discord:1.17.0-rolling-daily",
+      "uncompressed_size_mb": 1150,
+      "available_tags": [
+        "develop",
+        "1.17.0",
+        "1.17.0-rolling-weekly",
+        "1.17.0-rolling-daily"
+      ]
+    },
+    {
+      "version": "1.18.x",
+      "image": "kasmweb/discord:1.18.0-rolling-daily",
+      "uncompressed_size_mb": 1150,
+      "available_tags": [
+        "develop",
+        "1.18.0",
+        "1.18.0-rolling-weekly",
+        "1.18.0-rolling-daily"
+      ]
+    }
+  ],
+  "notes": "Validated against Docker Hub tags. Current published Discord workspace image appears to be AMD64-only. Official Discord logo asset used per brand guidelines."
+}
