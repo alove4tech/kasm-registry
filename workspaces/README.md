@@ -80,6 +80,6 @@ Before committing a new workspace:
 - categories are limited and sensible
 - channel tags follow the registry convention unless documented otherwise
 
-## Placeholder
+## Current inventory
 
-Until real workspaces are added, this directory may contain only template/example content.
+This repo already includes workspace entries for Discord, Firefox, Kali Linux, LibreOffice, Telegram, Tor Browser, and Ubuntu Desktop. Use them as the baseline for future additions so naming, icon handling, and README structure stay consistent.

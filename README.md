@@ -2,7 +2,7 @@
 
 Custom Kasm Workspaces registry for Aaron.
 
-This repository is the source for a self-hosted/static GitHub Pages registry based on the Kasm registry template. Right now the goal is to get the repository clean, documented, and ready for workspace definitions. Actual containers/workspaces will be added later.
+This repository is the source for a self-hosted/static GitHub Pages registry based on the Kasm registry template. It now includes a starter set of real workspace definitions plus the site and processing pipeline needed to publish them.
 
 ## Repo purpose
 
@@ -13,12 +13,11 @@ This repository is the source for a self-hosted/static GitHub Pages registry bas
 
 ## Current status
 
-- Template cloned and retained
 - Build workflow present
 - Site scaffold present
 - Processing scripts present
 - Workspace authoring docs cleaned up
-- Ready for adding real workspace entries later
+- Starter workspace catalog checked in and ready to expand
 
 ## Repository structure
 
@@ -39,6 +38,19 @@ workspaces/
     my-workspace.png
     README.md        # optional but recommended
 ```
+
+
+## Current workspace catalog
+
+| Workspace | Notes |
+|---|---|
+| Discord | Communication workspace entry with docs and icon assets |
+| Firefox | Browser workspace entry with icon assets |
+| Kali Linux | Security testing workspace entry |
+| LibreOffice | Productivity workspace entry |
+| Telegram | Messaging workspace entry |
+| Tor Browser | Privacy-focused browser workspace entry |
+| Ubuntu Desktop | General Linux desktop workspace entry |
 
 ## Quick start
 
@@ -119,3 +131,15 @@ This repo intentionally keeps container implementation details out for now. The 
 ## Discovery
 
 KASM-REGISTRY-DISCOVERY-IDENTIFIER
+
+## Local validation
+
+Before pushing workspace changes, it helps to run:
+
+```bash
+npm ci --prefix processing
+npm ci --prefix site
+./build_all_branches.sh
+```
+
+That catches broken metadata, missing static assets, and site export regressions before GitHub Pages does.
