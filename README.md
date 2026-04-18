@@ -119,10 +119,10 @@ This keeps workspace install options consistent across the registry.
 ## Recommended next steps
 
 - Add a project logo/icon under `site/public/`
-- Replace placeholder branding in `site/next.config.js` if needed
-- Add first real workspace folders under `workspaces/`
-- Test generation and GitHub Pages output
+- Expand workspace catalog with more ARM64 entries
+- Test generation and GitHub Pages output after adding new workspaces
 - Keep new workspaces aligned with the registry channel convention
+- Add CI validation for workspace.json schema
 
 ## Notes
 
