@@ -1,4 +1,5 @@
 #!/bin/sh
+set -eu
 
 DEFAULT=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
