@@ -42,15 +42,15 @@ workspaces/
 
 ## Current workspace catalog
 
-| Workspace | Notes |
-|---|---|
-| Discord | Communication workspace entry with docs and icon assets |
-| Firefox | Browser workspace entry with icon assets |
-| Kali Linux | Security testing workspace entry |
-| LibreOffice | Productivity workspace entry |
-| Telegram | Messaging workspace entry |
-| Tor Browser | Privacy-focused browser workspace entry |
-| Ubuntu Desktop | General Linux desktop workspace entry |
+| Workspace | Architecture | Notes |
+|---|---|---|
+| Discord | arm64 | Browser-based desktop app; disabled until image build validated |
+| Firefox | arm64 | Browser workspace entry |
+| Kali Linux | arm64 | Security testing desktop |
+| LibreOffice | arm64 | Productivity suite |
+| Telegram | arm64 | Messaging workspace entry |
+| Tor Browser | arm64 | Privacy-focused browser |
+| Ubuntu Desktop | arm64 | General Linux desktop (jammy) |
 
 ## Quick start
 
