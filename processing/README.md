@@ -15,6 +15,7 @@ From the repo root:
 
 ```bash
 npm ci --prefix processing
+npm run validate --prefix processing
 node processing/processjson.js
 ```
 
@@ -23,8 +24,19 @@ If you are touching icons or image metadata, rerun the processing step before bu
 ## Practical workflow
 
 1. Update or add a workspace under `workspaces/`
-2. Run the processing scripts
-3. Build the site with `./build_all_branches.sh`
-4. Spot check the generated output before pushing
+2. Run `npm run validate --prefix processing`
+3. Run the processing scripts
+4. Build the site with `./build_all_branches.sh`
+5. Spot check the generated output before pushing
 
 That keeps the published registry, static site, and workspace source data aligned.
+
+## Validation checks
+
+The validation script currently checks that each workspace has:
+
+- a readable `workspace.json`
+- a `README.md`
+- an icon file matching `image_src`
+- compatibility entries with a positive `uncompressed_size_mb`
+- the expected tag pattern for each declared Kasm version

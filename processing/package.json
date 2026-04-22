@@ -4,7 +4,7 @@
   "description": "Generate json file",
   "main": "processjson.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "validate": "node validate_workspaces.js"
   },
   "keywords": [],
   "author": "",
