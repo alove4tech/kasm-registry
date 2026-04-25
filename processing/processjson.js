@@ -62,7 +62,7 @@ glob("**/workspace.json", async function (err, files) {
 			let imagedata = fs.readFileSync(folder + "/" + parsed.image_src);
 			fs.writeFileSync(dir + "/icons/" + parsed.image_src, imagedata);
 		} else {
-			console.error("missing file: ".folder + "/" + parsed.image_src);
+			console.error("missing file: " + folder + "/" + parsed.image_src);
 		}
 
 	}
