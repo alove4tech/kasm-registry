@@ -22,7 +22,7 @@ This repository is the source for a self-hosted/static GitHub Pages registry bas
 ## Repository structure
 
 - `workspaces/` — workspace definitions, icons, and per-workspace docs
-- `site/` — static registry website source
+- `site/` — static registry website source (Next.js)
 - `processing/` — scripts that generate registry artifacts
 - `.github/workflows/` — GitHub Actions for build/deploy
 - `public/` — generated output during build
@@ -42,15 +42,15 @@ workspaces/
 
 ## Current workspace catalog
 
-| Workspace | Architecture | Notes |
-|---|---|---|
-| Discord | arm64 | Browser-based desktop app; disabled until image build validated |
-| Firefox | arm64 | Browser workspace entry |
-| Kali Linux | arm64 | Security testing desktop |
-| LibreOffice | arm64 | Productivity suite |
-| Telegram | arm64 | Messaging workspace entry |
-| Tor Browser | arm64 | Privacy-focused browser |
-| Ubuntu Desktop | arm64 | General Linux desktop (jammy) |
+| Workspace | Architecture | Status | Notes |
+|---|---|---|---|
+| Discord | arm64 | Disabled | Custom image not yet built |
+| Firefox | arm64 | Enabled | Browser workspace |
+| Kali Linux | arm64 | Enabled | Security testing desktop |
+| LibreOffice | arm64 | Enabled | Productivity suite |
+| Telegram | arm64 | Enabled | Messaging workspace |
+| Tor Browser | arm64 | Enabled | Privacy-focused browser |
+| Ubuntu Desktop | arm64 | Enabled | General Linux desktop (jammy) |
 
 ## Quick start
 
@@ -61,36 +61,31 @@ git clone https://github.com/alove4tech/kasm-registry
 cd kasm-registry
 ```
 
-### 2. Review site config
-
-Edit:
-
-- `site/next.config.js`
-
-Important values:
-
-- `env.name`
-- `env.description`
-- `env.icon`
-- `env.listUrl`
-- `env.contactUrl`
-- `basePath`
-
-### 3. Add workspaces later
-
-When ready, add workspace folders under `workspaces/`.
-
-### 4. Build locally
+### 2. Validate workspaces
 
 ```bash
 npm ci --prefix processing
+npm run validate --prefix processing
+```
+
+### 3. Build
+
+```bash
 npm ci --prefix site
 ./build_all_branches.sh
 ```
 
-### 5. Publish
+### 4. Publish
 
 Push to GitHub. The workflow in `.github/workflows/build-and-deploy.yml` deploys to `gh-pages`.
+
+## Adding a new workspace
+
+1. Create a new folder under `workspaces/` with a human-readable name
+2. Add `workspace.json`, an icon file, and a `README.md`
+3. Follow the naming and channel conventions in `workspaces/README.md`
+4. Run `npm run validate --prefix processing` to check for issues
+5. Build and test locally before pushing
 
 ## GitHub Pages notes
 
@@ -116,30 +111,6 @@ For each supported Kasm version, use:
 
 This keeps workspace install options consistent across the registry.
 
-## Recommended next steps
-
-- Add a project logo/icon under `site/public/`
-- Expand workspace catalog with more ARM64 entries
-- Test generation and GitHub Pages output after adding new workspaces
-- Keep new workspaces aligned with the registry channel convention
-- Add CI validation for workspace.json schema
-
-## Notes
-
-This repo intentionally keeps container implementation details out for now. The immediate objective is a clean, documented registry foundation.
-
 ## Discovery
 
 KASM-REGISTRY-DISCOVERY-IDENTIFIER
-
-## Local validation
-
-Before pushing workspace changes, it helps to run:
-
-```bash
-npm ci --prefix processing
-npm ci --prefix site
-./build_all_branches.sh
-```
-
-That catches broken metadata, missing static assets, and site export regressions before GitHub Pages does.
