@@ -52,3 +52,4 @@ test-timings.json
 .swc/
 .scripts/*.log
 .scripts/review.log
+site/public/list.json
