@@ -1,15 +1,10 @@
 const fs = require("fs");
-const glob = require("glob");
+const { glob } = require("glob");
 const { execSync } = require('child_process');
 
 
-glob("../workspaces/**/workspace.json", function (err, files) {
-	if (err) {
-		console.log(
-			"cannot read the folder, something goes wrong with glob",
-			err
-		);
-	}
+(async () => {
+	const files = await glob("../workspaces/**/workspace.json");
 
 	let total = 0
 	for (const file of files) {
@@ -25,7 +20,6 @@ glob("../workspaces/**/workspace.json", function (err, files) {
 				execSync('docker system prune --all --force --volumes')
 
 				let pull = execSync('docker pull ' + element.image)
-				// console.log(pull)
 				let inspect = execSync('docker inspect -f "{{ .Size }}"  ' + element.image)
 				let size = Math.round(inspect / 1000000)
 				let remove = execSync('docker rmi ' + element.image)
@@ -41,5 +35,4 @@ glob("../workspaces/**/workspace.json", function (err, files) {
 
 	}
 	console.log(total + ' entries processed')
-
-});
+})();

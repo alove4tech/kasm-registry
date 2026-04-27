@@ -1,5 +1,5 @@
 const fs = require("fs");
-const glob = require("glob");
+const { glob } = require("glob");
 const { hashElement } = require("folder-hash");
 const nextConfig = require("../site/next.config.js")
 
@@ -12,20 +12,14 @@ if (!fs.existsSync(dir + "/icons")) {
 	fs.mkdirSync(dir + "/icons");
 }
 
-glob("**/workspace.json", async function (err, files) {
-	if (err) {
-		console.log(
-			"cannot read the folder, something goes wrong with glob",
-			err
-		);
-	}
+(async () => {
+	const files = await glob("**/workspace.json");
 
 	let workspacetotal = files.length;
 	let workspaces = [];
-	let promises = [];
 
 	const options = {
-		algho: "sha1",
+		algo: "sha1",
 		encoding: "hex",
 	};
 
@@ -33,7 +27,6 @@ glob("**/workspace.json", async function (err, files) {
 	let versions = new Set()
 
 	for (const file of files) {
-		//files.forEach(async function(file) {
 
 		let folder = file.replace("/workspace.json", "");
 
@@ -90,5 +83,4 @@ glob("**/workspace.json", async function (err, files) {
 	fs.writeFileSync(dir + "/versions.json", JSON.stringify({
 		versions: [...versions]
 	}));
-
-});
+})();

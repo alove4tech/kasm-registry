@@ -1,14 +1,8 @@
 const fs = require("fs");
-const glob = require("glob");
+const { glob } = require("glob");
 
-glob("../workspaces/**/workspace.json", async function (err, files) {
-	if (err) {
-		console.log(
-			"cannot read the folder, something goes wrong with glob",
-			err
-		);
-	}
-
+(async () => {
+	const files = await glob("../workspaces/**/workspace.json");
 
 	for (const file of files) {
 
@@ -36,6 +30,4 @@ glob("../workspaces/**/workspace.json", async function (err, files) {
 
 		fs.writeFileSync(file, JSON.stringify(parsed, null, 2));
 	}
-
-
-});
+})();
