@@ -20,12 +20,12 @@ workspaces/
 Primary Kasm registry definition for the workspace.
 
 ### Icon
-Use `.png` or `.svg`.
+Use `.svg` (preferred) or `.png`.
 Recommended:
 
-- square image
-- at least 128x128
+- square image, at least 128×128 for PNG
 - simple, readable at small size
+- avoid 1×1 pixel placeholder PNGs — if only SVG is available, don't include a stub PNG
 
 ## Recommended file
 
