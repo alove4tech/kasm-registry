@@ -45,5 +45,6 @@
       ]
     }
   ],
-  "notes": "Custom ARM64 Discord workspace scaffold. Intended to run Discord as a browser-based desktop app on top of an ARM64 Kasm desktop image. Disabled until the custom image is built, tested, and published."
+  "notes": "Custom ARM64 Discord workspace scaffold. Intended to run Discord as a browser-based desktop app on top of an ARM64 Kasm desktop image. Disabled until the custom image is built, tested, and published.",
+  "arch": "arm64"
 }

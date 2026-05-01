@@ -51,5 +51,6 @@
       ]
     }
   ],
-  "notes": "Validated against Kasm image manifests as ARM64-capable."
+  "notes": "Validated against Kasm image manifests as ARM64-capable.",
+  "arch": "arm64"
 }
