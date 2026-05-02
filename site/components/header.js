@@ -6,13 +6,28 @@ import { NotificationManager } from 'react-notifications';
 export default function Header({ searchText, changeSearch }) {
 
   const copyToClipboard = () => {
-    var textField = document.createElement('textarea')
-    textField.innerText = listUrl
-    document.body.appendChild(textField)
-    textField.select()
-    document.execCommand('copy')
-    textField.remove()
-    NotificationManager.info('URL successfully copied to clipboard', 'Copy URL', 4000);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(listUrl).then(() => {
+        NotificationManager.info('URL successfully copied to clipboard', 'Copy URL', 4000);
+      }).catch(() => {
+        NotificationManager.error('Failed to copy URL', 'Copy URL', 4000);
+      });
+    } else {
+      // Fallback for older browsers
+      var textField = document.createElement('textarea')
+      textField.innerText = listUrl
+      textField.style.position = 'fixed'
+      textField.style.opacity = '0'
+      document.body.appendChild(textField)
+      textField.select()
+      try {
+        document.execCommand('copy')
+        NotificationManager.info('URL successfully copied to clipboard', 'Copy URL', 4000);
+      } catch {
+        NotificationManager.error('Failed to copy URL', 'Copy URL', 4000);
+      }
+      textField.remove()
+    }
   }
   const listUrl = process.env.listUrl;
   const router = useRouter();

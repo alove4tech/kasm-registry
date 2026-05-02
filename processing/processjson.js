@@ -33,7 +33,13 @@ if (!fs.existsSync(dir + "/icons")) {
 		let hash = await hashElement(folder, options);
 		let filedata = fs.readFileSync(file);
 
-		let parsed = JSON.parse(filedata);
+		let parsed;
+		try {
+			parsed = JSON.parse(filedata);
+		} catch (error) {
+			console.error(`Error: Failed to parse ${file}: ${error.message}`);
+			continue;
+		}
 		parsed.sha = hash.hash;
 		if (!parsed.name && Array.isArray(parsed.compatibility) && parsed.compatibility.length > 0 && parsed.compatibility[0].image) {
 			parsed.name = parsed.compatibility[0].image;

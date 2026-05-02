@@ -2,6 +2,9 @@ const fs = require("fs");
 const { glob } = require("glob");
 const { execSync } = require('child_process');
 
+// WARNING: This script runs `docker image prune -a -f` and `docker system prune --all --force --volumes`
+// before each image pull. This will REMOVE all unused Docker images, containers, and volumes on the host.
+// Only run this in a dedicated or disposable environment.
 
 (async () => {
 	const files = await glob("../workspaces/**/workspace.json");
