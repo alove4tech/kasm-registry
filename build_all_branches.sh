@@ -20,7 +20,7 @@ touch base/.nojekyll
 echo "Fetching all remotes..."
 git fetch --all
 
-VERSION_BRANCHES=$(git branch --remotes --format '%(refname:lstrip=3)' | grep -E '^[0-9]+\.[0-9]+$' || true)
+VERSION_BRANCHES=$(git branch --remotes --format '%(refname:lstrip=2)' | grep -E '^origin/[0-9]+\.[0-9]+$' | sed 's|^origin/||' || true)
 
 if [ -z "$VERSION_BRANCHES" ]; then
     echo "No version branches found. Building default branch only."
