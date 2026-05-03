@@ -36,6 +36,7 @@ Before submitting:
 ```bash
 npm ci --prefix processing
 npm run validate --prefix processing
+npm run generate --prefix processing
 npm ci --prefix site
 ./build_all_branches.sh
 ```

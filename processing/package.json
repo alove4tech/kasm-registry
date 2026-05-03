@@ -4,6 +4,7 @@
   "description": "Generate json file",
   "main": "processjson.js",
   "scripts": {
+    "generate": "node processjson.js",
     "validate": "node validate_workspaces.js"
   },
   "keywords": [],

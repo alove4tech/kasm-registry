@@ -41,6 +41,27 @@ for (const entry of entries) {
     issues.push(`${entry.name}: image_src points to missing file (${config.image_src})`);
   }
 
+  if (!Array.isArray(config.architecture) || config.architecture.length === 0) {
+    issues.push(`${entry.name}: architecture is missing or empty`);
+  } else {
+    const supportedArchitectures = new Set(['amd64', 'arm64']);
+    for (const architecture of config.architecture) {
+      if (!supportedArchitectures.has(architecture)) {
+        issues.push(`${entry.name}: architecture contains unsupported value (${architecture})`);
+      }
+    }
+  }
+
+  if (!config.arch || typeof config.arch !== 'string') {
+    issues.push(`${entry.name}: arch is missing or invalid`);
+  } else if (Array.isArray(config.architecture)) {
+    const archValues = config.arch.split(',').map((arch) => arch.trim()).filter(Boolean).sort();
+    const architectureValues = [...config.architecture].sort();
+    if (JSON.stringify(archValues) !== JSON.stringify(architectureValues)) {
+      issues.push(`${entry.name}: arch (${config.arch}) does not match architecture (${config.architecture.join(',')})`);
+    }
+  }
+
   if (!fs.existsSync(readmePath)) {
     issues.push(`${entry.name}: missing README.md`);
   }

@@ -1,7 +1,11 @@
 const fs = require("fs");
+const path = require("path");
 const { glob } = require("glob");
 const { hashElement } = require("folder-hash");
 const nextConfig = require("../site/next.config.js")
+
+const repoRoot = path.resolve(__dirname, '..');
+process.chdir(repoRoot);
 
 var dir = "./public";
 
@@ -13,10 +17,10 @@ if (!fs.existsSync(dir + "/icons")) {
 }
 
 (async () => {
-	const files = await glob("**/workspace.json");
+	const files = (await glob("workspaces/**/workspace.json")).sort();
 
-	let workspacetotal = files.length;
 	let workspaces = [];
+	let errors = [];
 
 	const options = {
 		algo: "sha1",
@@ -37,7 +41,7 @@ if (!fs.existsSync(dir + "/icons")) {
 		try {
 			parsed = JSON.parse(filedata);
 		} catch (error) {
-			console.error(`Error: Failed to parse ${file}: ${error.message}`);
+			errors.push(`Failed to parse ${file}: ${error.message}`);
 			continue;
 		}
 		parsed.sha = hash.hash;
@@ -61,14 +65,14 @@ if (!fs.existsSync(dir + "/icons")) {
 			let imagedata = fs.readFileSync(folder + "/" + parsed.image_src);
 			fs.writeFileSync(dir + "/icons/" + parsed.image_src, imagedata);
 		} else {
-			console.error("missing file: " + folder + "/" + parsed.image_src);
+			errors.push("missing file: " + folder + "/" + parsed.image_src);
 		}
 
 	}
 
 	let json = {
 		name: nextConfig.env.name || 'Unknown store',
-		workspacecount: workspacetotal,
+		workspacecount: workspaces.length,
 		icon: nextConfig.env.icon || null,
 		description: nextConfig.env.description || null,
 		list_url: nextConfig.env.listUrl || null,
@@ -81,6 +85,14 @@ if (!fs.existsSync(dir + "/icons")) {
 
 	if (channels.size === 0) {
 		json.default_channel = null
+	}
+
+	if (errors.length > 0) {
+		console.error('Failed to process workspace registry:\n');
+		for (const error of errors) {
+			console.error(`- ${error}`);
+		}
+		process.exit(1);
 	}
 
 	let data = JSON.stringify(json);
