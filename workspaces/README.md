@@ -82,4 +82,4 @@ Before committing a new workspace:
 
 ## Current inventory
 
-This repo already includes workspace entries for Discord, Firefox, Kali Linux, LibreOffice, Telegram, Tor Browser, and Ubuntu Desktop. Use them as the baseline for future additions so naming, icon handling, and README structure stay consistent.
+This repo already includes workspace entries for CyberChef, Discord, Firefox, Kali Linux, LibreOffice, Telegram, Tor Browser, and Ubuntu Desktop. Use them as the baseline for future additions so naming, icon handling, and README structure stay consistent.
