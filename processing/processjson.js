@@ -95,10 +95,10 @@ if (!fs.existsSync(dir + "/icons")) {
 		process.exit(1);
 	}
 
-	let data = JSON.stringify(json);
+	let data = JSON.stringify(json, null, 2) + "\n";
 
 	fs.writeFileSync(dir + "/list.json", data);
 	fs.writeFileSync(dir + "/versions.json", JSON.stringify({
 		versions: [...versions]
-	}));
+	}, null, 2) + "\n");
 })();

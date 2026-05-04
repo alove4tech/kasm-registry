@@ -1,5 +1,5 @@
-#!/bin/sh
-set -eu
+#!/usr/bin/env bash
+set -euo pipefail
 
 DEFAULT=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
 
@@ -41,19 +41,19 @@ for BRANCH in $VERSION_BRANCHES; do
     fi
 
     cp -a public/. process
-    sed -i "s/1.0/$SANITIZED_BRANCH/" site/next.config.js
+    # Target only the basePath line to avoid accidental replacements elsewhere
+    sed -i "s|basePath: '/kasm-registry/[^']*'|basePath: '/kasm-registry/$SANITIZED_BRANCH'|" site/next.config.js
 
     if ! npm install --quiet --prefix site; then
         echo "WARNING: site install failed for $BRANCH, skipping" >&2
         rm -rf process
-        sed -i "s/$SANITIZED_BRANCH/1.0/" site/next.config.js
         continue
     fi
 
     npm run deploy --prefix site
     cp -a process/. public/
     rm -rf process
-    sed -i "s/$SANITIZED_BRANCH/1.0/" site/next.config.js
+    # No need to restore config — next iteration's git checkout --force resets it
     mv public "base/$SANITIZED_BRANCH"
     cp "base/$SANITIZED_BRANCH/favicon.ico" base/favicon.ico 2>/dev/null || true
 done

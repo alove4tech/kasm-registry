@@ -1,7 +1,18 @@
 const fs = require("fs");
 const { glob } = require("glob");
 
-const baseversion = '1.16'
+// Accept version as CLI arg or env var, e.g.: node add_next_version.js 1.19
+// or: BASE_VERSION=1.19 node add_next_version.js
+const baseversion = process.argv[2] || process.env.BASE_VERSION || null;
+
+if (!baseversion) {
+  console.error("Usage: node add_next_version.js <base_version>");
+  console.error("   or: BASE_VERSION=<base_version> node add_next_version.js");
+  console.error("");
+  console.error("Example: node add_next_version.js 1.19");
+  process.exit(1);
+}
+
 const tag = ':develop'
 
 const version = baseversion + '.x'
@@ -34,7 +45,10 @@ const tagversion = baseversion + '.0'
 
 		if (exists === -1) {
 			parsed.compatibility.push(details)
-			fs.writeFileSync(file, JSON.stringify(parsed, null, 2));
+			fs.writeFileSync(file, JSON.stringify(parsed, null, 2) + "\n");
+			console.log(`Added ${version} to ${parsed.friendly_name}`);
+		} else {
+			console.log(`Skipped ${parsed.friendly_name}: ${version} already exists`);
 		}
 	}
 })();
