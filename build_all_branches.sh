@@ -40,7 +40,8 @@ for BRANCH in $VERSION_BRANCHES; do
         continue
     fi
 
-    cp -a public/. process
+    mkdir -p process
+    cp -a public/. process/
     # Target only the basePath line to avoid accidental replacements elsewhere
     sed -i "s|basePath: '/kasm-registry/[^']*'|basePath: '/kasm-registry/$SANITIZED_BRANCH'|" site/next.config.js
 
