@@ -31,6 +31,12 @@ for (const entry of entries) {
     issues.push(`${entry.name}: friendly_name is missing or invalid`);
   }
 
+  if (!config.name || typeof config.name !== 'string') {
+    issues.push(`${entry.name}: name is missing or invalid (should be the Docker image name without tag, e.g. "kasmweb/firefox")`);
+  } else if (config.name.includes(':')) {
+    issues.push(`${entry.name}: name should not include a tag (found "${config.name}")`);
+  }
+
   if (!config.description || typeof config.description !== 'string') {
     issues.push(`${entry.name}: description is missing or invalid`);
   }

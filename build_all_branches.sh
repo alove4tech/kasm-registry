@@ -1,14 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DEFAULT=$(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+# Only consider origin version branches — never Gitea or other remotes
+REMOTE="origin"
+
+DEFAULT=$(git remote show "$REMOTE" | sed -n '/HEAD branch/s/.*: //p')
 
 if [ -z "$DEFAULT" ]; then
-    echo "ERROR: Could not determine default branch from remote." >&2
+    echo "ERROR: Could not determine default branch from ${REMOTE}." >&2
     exit 1
 fi
 
 echo "Default branch: $DEFAULT"
+
+# Save starting branch so we can restore it on exit
+STARTING_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || git rev-parse HEAD)
+
+cleanup() {
+    echo "Restoring branch: $STARTING_BRANCH"
+    git checkout --force "$STARTING_BRANCH" 2>/dev/null || true
+}
+trap cleanup EXIT
 
 mkdir base
 cat > base/index.html << EOF
@@ -16,11 +28,11 @@ cat > base/index.html << EOF
 EOF
 touch base/.nojekyll
 
-# Generating documentation for each version branch in a subdirectory
-echo "Fetching all remotes..."
-git fetch --all
+# Fetch only from origin to avoid pulling Gitea or other remote branches
+echo "Fetching from ${REMOTE}..."
+git fetch "$REMOTE"
 
-VERSION_BRANCHES=$(git branch --remotes --format '%(refname:lstrip=2)' | grep -E '^origin/[0-9]+\.[0-9]+$' | sed 's|^origin/||' || true)
+VERSION_BRANCHES=$(git branch --remotes --format '%(refname:lstrip=2)' | grep -E "^${REMOTE}/[0-9]+\.[0-9]+$" | sed "s|^${REMOTE}/||" || true)
 
 if [ -z "$VERSION_BRANCHES" ]; then
     echo "No version branches found. Building default branch only."

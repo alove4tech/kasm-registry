@@ -1,5 +1,6 @@
 {
   "description": "CyberChef web app launched in Chromium for encoding, decoding, hashing, and data inspection on ARM64 and AMD64 Kasm deployments.",
+  "name": "kasmweb/chromium",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "cyberchef.svg",
   "categories": [

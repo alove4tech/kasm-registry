@@ -1,5 +1,6 @@
 {
   "description": "Discord workspace for ARM64 Kasm deployments using a browser-based desktop app image.",
+  "name": "alove4tech/kasm-discord-arm64",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "discord.svg",
   "categories": [

@@ -1,5 +1,6 @@
 {
   "description": "Kali Linux rolling desktop workspace for ARM64 Kasm deployments.",
+  "name": "kasmweb/kali-rolling-desktop",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "kali-linux.svg",
   "categories": [

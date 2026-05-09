@@ -1,5 +1,6 @@
 {
   "description": "Telegram desktop workspace for ARM64 Kasm deployments.",
+  "name": "kasmweb/telegram",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "telegram.svg",
   "categories": [

@@ -46,7 +46,8 @@ if (!fs.existsSync(dir + "/icons")) {
 		}
 		parsed.sha = hash.hash;
 		if (!parsed.name && Array.isArray(parsed.compatibility) && parsed.compatibility.length > 0 && parsed.compatibility[0].image) {
-			parsed.name = parsed.compatibility[0].image;
+			// Fallback: derive name from first compatibility image (without tag)
+			parsed.name = parsed.compatibility[0].image.split(':')[0];
 		}
 		console.log(parsed.friendly_name + ' added')
 		parsed.compatibility.forEach((element, index) => {

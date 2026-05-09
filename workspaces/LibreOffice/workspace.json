@@ -1,5 +1,6 @@
 {
   "description": "LibreOffice productivity suite for ARM64 Kasm deployments.",
+  "name": "kasmweb/libre-office",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "libreoffice.svg",
   "categories": [

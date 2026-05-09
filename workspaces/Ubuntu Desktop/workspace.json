@@ -1,5 +1,6 @@
 {
   "description": "General-purpose Ubuntu desktop workspace for ARM64 Kasm deployments.",
+  "name": "kasmweb/ubuntu-jammy-desktop",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "ubuntu-desktop.svg",
   "categories": [

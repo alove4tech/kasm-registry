@@ -1,5 +1,6 @@
 {
   "description": "Tor Browser workspace for ARM64 Kasm deployments.",
+  "name": "kasmweb/tor-browser",
   "docker_registry": "https://index.docker.io/v1/",
   "image_src": "tor-browser.svg",
   "categories": [
