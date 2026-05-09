@@ -5,10 +5,11 @@
   "description": "ARM-first Kasm workspace registry from Alove4Tech for Oracle Ampere and other ARM64 deployments.",
   "list_url": "https://alove4tech.github.io/kasm-registry/",
   "contact_url": "https://github.com/alove4tech/kasm-registry/issues",
-  "modified": 1777954129098,
+  "modified": 1778296832407,
   "workspaces": [
     {
       "description": "CyberChef web app launched in Chromium for encoding, decoding, hashing, and data inspection on ARM64 and AMD64 Kasm deployments.",
+      "name": "kasmweb/chromium",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "cyberchef.svg",
       "categories": [
@@ -64,11 +65,11 @@
       ],
       "notes": "Uses the multi-arch Kasm Chromium image and launches the official CyberChef static web app. Chromium manifests validated for linux/amd64 and linux/arm64.",
       "arch": "amd64,arm64",
-      "sha": "30427e3bd8312ea88b07d163e94cc8ecdb229d02",
-      "name": "kasmweb/chromium:1.17.0-rolling-daily"
+      "sha": "5a4eea7ea051598dbc86caf738627b7981863b78"
     },
     {
       "description": "Discord workspace for ARM64 Kasm deployments using a browser-based desktop app image.",
+      "name": "alove4tech/kasm-discord-arm64",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "discord.svg",
       "categories": [
@@ -116,11 +117,11 @@
       ],
       "notes": "Custom ARM64 Discord workspace scaffold. Intended to run Discord as a browser-based desktop app on top of an ARM64 Kasm desktop image. Disabled until the custom image is built, tested, and published.",
       "arch": "arm64",
-      "sha": "f29ac52659176b1189629f897f6b8ff7a68111d4",
-      "name": "alove4tech/kasm-discord-arm64:1.17.0"
+      "sha": "1a37c5af6959e64f3dad2ee212b461f31a1e9a8d"
     },
     {
       "description": "Firefox was created by Mozilla as a faster, more private browser and is packaged here for ARM64 Kasm deployments.",
+      "name": "kasmweb/firefox",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "firefox.svg",
       "categories": [
@@ -174,11 +175,11 @@
       ],
       "notes": "Validated against Kasm docs and manifest as ARM64-capable.",
       "arch": "arm64",
-      "sha": "42b728b832f1c9f81e4653c65d7a0fce72150179",
-      "name": "kasmweb/firefox:1.17.0-rolling-daily"
+      "sha": "35008d88c0b6f80082c47f83575e7898906b2a10"
     },
     {
       "description": "Kali Linux rolling desktop workspace for ARM64 Kasm deployments.",
+      "name": "kasmweb/kali-rolling-desktop",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "kali-linux.svg",
       "categories": [
@@ -233,11 +234,11 @@
       ],
       "notes": "Validated against Kasm docs and manifest as ARM64-capable.",
       "arch": "arm64",
-      "sha": "bf9918635f12c71ee660272b46936fc69c91d7ff",
-      "name": "kasmweb/kali-rolling-desktop:1.17.0-rolling-daily"
+      "sha": "238e9c7091de5da5f4b46399259b79946c447c3c"
     },
     {
       "description": "LibreOffice productivity suite for ARM64 Kasm deployments.",
+      "name": "kasmweb/libre-office",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "libreoffice.svg",
       "categories": [
@@ -292,11 +293,11 @@
       ],
       "notes": "Validated against Kasm docs and manifest as ARM64-capable.",
       "arch": "arm64",
-      "sha": "ae1151503222a0bcc1d042777e9b4f23f2c64f2b",
-      "name": "kasmweb/libre-office:1.17.0-rolling-daily"
+      "sha": "e5cd437c95a9d90efdbb1a4a4be08e0a60c27b2b"
     },
     {
       "description": "Telegram desktop workspace for ARM64 Kasm deployments.",
+      "name": "kasmweb/telegram",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "telegram.svg",
       "categories": [
@@ -350,11 +351,11 @@
       ],
       "notes": "Validated against Kasm image manifests as ARM64-capable.",
       "arch": "arm64",
-      "sha": "17aff13bedc60ba2bda896633ea02849a98037c5",
-      "name": "kasmweb/telegram:1.17.0-rolling-daily"
+      "sha": "09d965906b2f7c173461744c608f3d1f9de3849e"
     },
     {
       "description": "Tor Browser workspace for ARM64 Kasm deployments.",
+      "name": "kasmweb/tor-browser",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "tor-browser.svg",
       "categories": [
@@ -409,11 +410,11 @@
       ],
       "notes": "Validated against Kasm image manifests as ARM64-capable.",
       "arch": "arm64",
-      "sha": "2d8f6aee409d91cb09c8d268c9296efe1735ad9b",
-      "name": "kasmweb/tor-browser:1.17.0-rolling-daily"
+      "sha": "2c47326883ba54537a48cef2aba8ff2cd84c4d2d"
     },
     {
       "description": "General-purpose Ubuntu desktop workspace for ARM64 Kasm deployments.",
+      "name": "kasmweb/ubuntu-jammy-desktop",
       "docker_registry": "https://index.docker.io/v1/",
       "image_src": "ubuntu-desktop.svg",
       "categories": [
@@ -468,8 +469,7 @@
       ],
       "notes": "Validated against Kasm docs and manifest as ARM64-capable.",
       "arch": "arm64",
-      "sha": "d7fdac4b0e7a0bf446a348bc16cf166744872aa5",
-      "name": "kasmweb/ubuntu-jammy-desktop:1.17.0-rolling-daily"
+      "sha": "c4e6ffd12c7eb04a5d4cfb1205806872b4cf201c"
     }
   ],
   "channels": [
