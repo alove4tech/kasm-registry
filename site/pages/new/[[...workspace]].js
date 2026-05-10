@@ -346,7 +346,7 @@ function Workspace({ workspace, icon, inlineImage }) {
               <span key={'arch' + index} className="p-2 py-0 m-[1px] inline-block rounded bg-slate-700 text-slate-100">{arch}</span>
             ))}
 
-            {workspace.categories.map((cat, index) => (
+            {workspace.categories && workspace.categories.map((cat, index) => (
               <span key={'cat' + index} className="p-2 py-0 m-[1px] inline-block rounded bg-slate-600 text-slate-100">{cat}</span>
             ))}
           </div>

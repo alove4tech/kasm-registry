@@ -12,7 +12,12 @@ export default function Home({ searchText }) {
   useEffect(() => {
     let currentVersion = localStorage.getItem("version") || null
     fetch('list.json')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Failed to load list.json: ${res.status} ${res.statusText}`);
+        }
+        return res.json();
+      })
       .then((workspaces) => {
         let wsversions = []
         workspaces.workspaces.forEach((workspace) => {
@@ -34,6 +39,9 @@ export default function Home({ searchText }) {
         }
         setVersion(currentVersion)
         setWorkspaces(workspaces)
+      })
+      .catch((err) => {
+        console.error('Failed to load workspace list:', err);
       })
   }, [])
 

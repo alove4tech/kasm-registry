@@ -22,6 +22,7 @@ cleanup() {
 }
 trap cleanup EXIT
 
+rm -rf base
 mkdir base
 cat > base/index.html << EOF
 <meta http-equiv="refresh" content="0; url=./$DEFAULT/">
@@ -57,7 +58,7 @@ for BRANCH in $VERSION_BRANCHES; do
     # Target only the basePath line to avoid accidental replacements elsewhere
     sed -i "s|basePath: '/kasm-registry/[^']*'|basePath: '/kasm-registry/$SANITIZED_BRANCH'|" site/next.config.js
 
-    if ! npm install --quiet --prefix site; then
+    if ! npm ci --prefix site; then
         echo "WARNING: site install failed for $BRANCH, skipping" >&2
         rm -rf process
         continue
