@@ -41,6 +41,9 @@ fi
 
 echo "Version branches: $VERSION_BRANCHES"
 
+SUCCEEDED=0
+FAILED=0
+
 for BRANCH in $VERSION_BRANCHES; do
     SANITIZED_BRANCH="$(echo "$BRANCH" | sed 's/\//_/g')"
     echo "Building branch: $BRANCH (sanitized: $SANITIZED_BRANCH)"
@@ -50,6 +53,7 @@ for BRANCH in $VERSION_BRANCHES; do
 
     if ! node processing; then
         echo "WARNING: processing failed for $BRANCH, skipping" >&2
+        FAILED=$((FAILED + 1))
         continue
     fi
 
@@ -61,6 +65,7 @@ for BRANCH in $VERSION_BRANCHES; do
     if ! npm ci --prefix site; then
         echo "WARNING: site install failed for $BRANCH, skipping" >&2
         rm -rf process
+        FAILED=$((FAILED + 1))
         continue
     fi
 
@@ -70,7 +75,13 @@ for BRANCH in $VERSION_BRANCHES; do
     # No need to restore config — next iteration's git checkout --force resets it
     mv public "base/$SANITIZED_BRANCH"
     cp "base/$SANITIZED_BRANCH/favicon.ico" base/favicon.ico 2>/dev/null || true
+    SUCCEEDED=$((SUCCEEDED + 1))
 done
 
 mv base public
 echo "Build complete. Output in public/"
+echo "Branches built: $SUCCEEDED succeeded, $FAILED failed (out of $(echo "$VERSION_BRANCHES" | wc -w | tr -d ' ') total)"
+
+if [ "$FAILED" -gt 0 ]; then
+    echo "WARNING: $FAILED branch(es) failed to build" >&2
+fi

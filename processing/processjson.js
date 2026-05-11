@@ -21,6 +21,7 @@ if (!fs.existsSync(dir + "/icons")) {
 
 	let workspaces = [];
 	let errors = [];
+	let seenNames = new Set();
 
 	const options = {
 		algo: "sha1",
@@ -45,10 +46,31 @@ if (!fs.existsSync(dir + "/icons")) {
 			continue;
 		}
 		parsed.sha = hash.hash;
+
+		// Fallback: derive name from first compatibility image (without tag)
 		if (!parsed.name && Array.isArray(parsed.compatibility) && parsed.compatibility.length > 0 && parsed.compatibility[0].image) {
-			// Fallback: derive name from first compatibility image (without tag)
-			parsed.name = parsed.compatibility[0].image.split(':')[0];
+			const imageRef = parsed.compatibility[0].image.split(':')[0];
+			// Strip any registry prefix to get just the image name
+			const parts = imageRef.split('/');
+			parsed.name = parts.length > 1 ? parts.slice(-2).join('/') : imageRef;
 		}
+
+		if (!parsed.friendly_name) {
+			errors.push(`${file}: missing friendly_name, skipping`);
+			continue;
+		}
+
+		if (seenNames.has(parsed.friendly_name)) {
+			errors.push(`${file}: duplicate friendly_name "${parsed.friendly_name}"`);
+			continue;
+		}
+		seenNames.add(parsed.friendly_name);
+
+		if (!parsed.image_src) {
+			errors.push(`${file}: missing image_src`);
+			continue;
+		}
+
 		console.log(parsed.friendly_name + ' added')
 		parsed.compatibility.forEach((element, index) => {
 			if ('available_tags' in element) {
@@ -81,12 +103,8 @@ if (!fs.existsSync(dir + "/icons")) {
 		modified: Date.now(),
 		workspaces: workspaces,
 		channels: [...channels],
-		default_channel: 'develop'
+		default_channel: channels.has('develop') ? 'develop' : (channels.size > 0 ? [...channels][0] : null)
 	};
-
-	if (channels.size === 0) {
-		json.default_channel = null
-	}
 
 	if (errors.length > 0) {
 		console.error('Failed to process workspace registry:\n');
