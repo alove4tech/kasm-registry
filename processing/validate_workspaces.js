@@ -47,6 +47,26 @@ for (const entry of entries) {
     issues.push(`${entry.name}: image_src points to missing file (${config.image_src})`);
   }
 
+  if (config.enabled === undefined) {
+    issues.push(`${entry.name}: enabled field is missing`);
+  } else if (typeof config.enabled !== 'boolean') {
+    issues.push(`${entry.name}: enabled should be a boolean (found ${typeof config.enabled})`);
+  }
+
+  if (!config.docker_registry || typeof config.docker_registry !== 'string') {
+    issues.push(`${entry.name}: docker_registry is missing or invalid`);
+  }
+
+  if (!Array.isArray(config.categories) || config.categories.length === 0) {
+    issues.push(`${entry.name}: categories is missing or empty`);
+  } else {
+    for (const category of config.categories) {
+      if (typeof category !== 'string' || category.trim() === '') {
+        issues.push(`${entry.name}: categories contains an empty or invalid entry`);
+      }
+    }
+  }
+
   if (!Array.isArray(config.architecture) || config.architecture.length === 0) {
     issues.push(`${entry.name}: architecture is missing or empty`);
   } else {
