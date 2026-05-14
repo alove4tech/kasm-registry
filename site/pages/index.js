@@ -55,15 +55,19 @@ export default function Home({ searchText }) {
   const lowerSearch = searchText && searchText.toLowerCase();
   if (searchText && searchText !== "") {
     filteredworkspaces = filteredworkspaces.filter((i) => {
-      const category = (i.categories && i.categories.length > 0) ? i.categories.filter((i) =>
-        i.toLowerCase().includes(lowerSearch)
+      const category = (i.categories && i.categories.length > 0) ? i.categories.filter((c) =>
+        c.toLowerCase().includes(lowerSearch)
       ) : [];
       return (
         i.name.toLowerCase().includes(lowerSearch) ||
+        (i.friendly_name && i.friendly_name.toLowerCase().includes(lowerSearch)) ||
+        (i.description && i.description.toLowerCase().includes(lowerSearch)) ||
         category.length > 0
       );
     });
   }
+
+  filteredworkspaces.sort((a, b) => (a.friendly_name || '').localeCompare(b.friendly_name || ''))
 
 
   return (

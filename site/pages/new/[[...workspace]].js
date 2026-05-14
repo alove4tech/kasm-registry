@@ -232,7 +232,8 @@ export default function New({ workspace }) {
     { value: 'Office', label: 'Office' },
     { value: 'Privacy', label: 'Privacy' },
     { value: 'Productivity', label: 'Productivity' },
-    { value: 'Remote Access', label: 'Remote Access' }
+    { value: 'Remote Access', label: 'Remote Access' },
+    { value: 'Security', label: 'Security' }
   ]
 
   return (

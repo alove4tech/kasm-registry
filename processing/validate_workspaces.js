@@ -7,6 +7,7 @@ const workspacesRoot = path.join(repoRoot, 'workspaces');
 const entries = fs.readdirSync(workspacesRoot, { withFileTypes: true }).filter((entry) => entry.isDirectory());
 
 const issues = [];
+const seenFriendlyNames = new Map(); // friendly_name → workspace directory name
 
 for (const entry of entries) {
   const workspaceDir = path.join(workspacesRoot, entry.name);
@@ -29,6 +30,12 @@ for (const entry of entries) {
 
   if (!config.friendly_name || typeof config.friendly_name !== 'string') {
     issues.push(`${entry.name}: friendly_name is missing or invalid`);
+  } else {
+    if (seenFriendlyNames.has(config.friendly_name)) {
+      issues.push(`${entry.name}: duplicate friendly_name "${config.friendly_name}" (already used by ${seenFriendlyNames.get(config.friendly_name)})`);
+    } else {
+      seenFriendlyNames.set(config.friendly_name, entry.name);
+    }
   }
 
   if (!config.name || typeof config.name !== 'string') {
