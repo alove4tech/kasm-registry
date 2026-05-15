@@ -1,8 +1,12 @@
 const fs = require("fs");
+const path = require("path");
 const { glob } = require("glob");
 
+const repoRoot = path.resolve(__dirname, '..');
+
 (async () => {
-	const files = await glob("../workspaces/**/workspace.json");
+	const pattern = path.join(repoRoot, 'workspaces', '**', 'workspace.json').replace(/\\/g, '/');
+	const files = await glob(pattern);
 
 	for (const file of files) {
 

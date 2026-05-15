@@ -1,4 +1,5 @@
 const fs = require("fs");
+const path = require("path");
 const { glob } = require("glob");
 const { execSync } = require('child_process');
 
@@ -6,8 +7,11 @@ const { execSync } = require('child_process');
 // before each image pull. This will REMOVE all unused Docker images, containers, and volumes on the host.
 // Only run this in a dedicated or disposable environment.
 
+const repoRoot = path.resolve(__dirname, '..');
+
 (async () => {
-	const files = await glob("../workspaces/**/workspace.json");
+	const pattern = path.join(repoRoot, 'workspaces', '**', 'workspace.json').replace(/\\/g, '/');
+	const files = await glob(pattern);
 
 	let total = 0
 	let failed = 0

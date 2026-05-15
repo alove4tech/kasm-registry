@@ -99,6 +99,20 @@ for (const entry of entries) {
     issues.push(`${entry.name}: missing README.md`);
   }
 
+  // Validate exec_config — Kasm expects at least a "go" entry with a "cmd" string
+  if (!config.exec_config || typeof config.exec_config !== 'object' || Array.isArray(config.exec_config)) {
+    issues.push(`${entry.name}: exec_config is missing or not an object`);
+  } else if (!config.exec_config.go || !config.exec_config.go.cmd || typeof config.exec_config.go.cmd !== 'string') {
+    issues.push(`${entry.name}: exec_config.go.cmd is missing or not a string`);
+  }
+
+  // Validate run_config if present — should be a plain object
+  if ('run_config' in config) {
+    if (!config.run_config || typeof config.run_config !== 'object' || Array.isArray(config.run_config)) {
+      issues.push(`${entry.name}: run_config is present but not a valid object`);
+    }
+  }
+
   const allowTagException =
     config.enabled === false &&
     /disabled until/i.test(readmeText) &&

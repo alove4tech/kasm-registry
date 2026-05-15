@@ -7,36 +7,37 @@ const nextConfig = require("../site/next.config.js")
 const repoRoot = path.resolve(__dirname, '..');
 process.chdir(repoRoot);
 
-var dir = "./public";
+const publicDir = path.join(repoRoot, 'public');
+const iconsDir = path.join(publicDir, 'icons');
 
-if (!fs.existsSync(dir)) {
-	fs.mkdirSync(dir);
+if (!fs.existsSync(publicDir)) {
+	fs.mkdirSync(publicDir);
 }
-if (!fs.existsSync(dir + "/icons")) {
-	fs.mkdirSync(dir + "/icons");
+if (!fs.existsSync(iconsDir)) {
+	fs.mkdirSync(iconsDir);
 }
 
 (async () => {
 	const files = (await glob("workspaces/**/workspace.json")).sort();
 
-	let workspaces = [];
-	let errors = [];
-	let seenNames = new Set();
+	const workspaces = [];
+	const errors = [];
+	const seenNames = new Set();
 
 	const options = {
 		algo: "sha1",
 		encoding: "hex",
 	};
 
-	let channels = new Set()
-	let versions = new Set()
+	const channels = new Set()
+	const versions = new Set()
 
 	for (const file of files) {
 
-		let folder = file.replace("/workspace.json", "");
+		const folder = file.replace("/workspace.json", "");
 
-		let hash = await hashElement(folder, options);
-		let filedata = fs.readFileSync(file);
+		const hash = await hashElement(folder, options);
+		const filedata = fs.readFileSync(file);
 
 		let parsed;
 		try {
@@ -72,7 +73,7 @@ if (!fs.existsSync(dir + "/icons")) {
 		}
 
 		console.log(parsed.friendly_name + ' added')
-		parsed.compatibility.forEach((element, index) => {
+		parsed.compatibility.forEach((element) => {
 			if ('available_tags' in element) {
 				element.available_tags.forEach((el) => {
 					channels.add(el)
@@ -84,16 +85,18 @@ if (!fs.existsSync(dir + "/icons")) {
 		})
 		workspaces.push(parsed);
 
-		if (fs.existsSync(folder + "/" + parsed.image_src)) {
-			let imagedata = fs.readFileSync(folder + "/" + parsed.image_src);
-			fs.writeFileSync(dir + "/icons/" + parsed.image_src, imagedata);
+		const iconSource = path.join(folder, parsed.image_src);
+		const iconDest = path.join(iconsDir, parsed.image_src);
+		if (fs.existsSync(iconSource)) {
+			const imagedata = fs.readFileSync(iconSource);
+			fs.writeFileSync(iconDest, imagedata);
 		} else {
-			errors.push("missing file: " + folder + "/" + parsed.image_src);
+			errors.push("missing file: " + iconSource);
 		}
 
 	}
 
-	let json = {
+	const json = {
 		name: nextConfig.env.name || 'Unknown store',
 		workspacecount: workspaces.length,
 		icon: nextConfig.env.icon || null,
@@ -114,10 +117,10 @@ if (!fs.existsSync(dir + "/icons")) {
 		process.exit(1);
 	}
 
-	let data = JSON.stringify(json, null, 2) + "\n";
+	const data = JSON.stringify(json, null, 2) + "\n";
 
-	fs.writeFileSync(dir + "/list.json", data);
-	fs.writeFileSync(dir + "/versions.json", JSON.stringify({
+	fs.writeFileSync(path.join(publicDir, "list.json"), data);
+	fs.writeFileSync(path.join(publicDir, "versions.json"), JSON.stringify({
 		versions: [...versions]
 	}, null, 2) + "\n");
 })();
