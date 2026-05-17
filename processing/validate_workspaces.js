@@ -8,6 +8,7 @@ const entries = fs.readdirSync(workspacesRoot, { withFileTypes: true }).filter((
 
 const issues = [];
 const seenFriendlyNames = new Map(); // friendly_name → workspace directory name
+const seenImageNames = new Map(); // name → workspace directory name
 
 for (const entry of entries) {
   const workspaceDir = path.join(workspacesRoot, entry.name);
@@ -42,6 +43,10 @@ for (const entry of entries) {
     issues.push(`${entry.name}: name is missing or invalid (should be the Docker image name without tag, e.g. "kasmweb/firefox")`);
   } else if (config.name.includes(':')) {
     issues.push(`${entry.name}: name should not include a tag (found "${config.name}")`);
+  } else if (seenImageNames.has(config.name)) {
+    issues.push(`${entry.name}: duplicate image name "${config.name}" (already used by ${seenImageNames.get(config.name)}). Kasm uses this field to decide whether to show Install or Edit.`);
+  } else {
+    seenImageNames.set(config.name, entry.name);
   }
 
   if (!config.description || typeof config.description !== 'string') {

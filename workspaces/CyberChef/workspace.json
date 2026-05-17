@@ -1,7 +1,7 @@
 {
   "description": "CyberChef web app launched in Chromium for encoding, decoding, hashing, and data inspection on ARM64 and AMD64 Kasm deployments.",
-  "name": "kasmweb/chromium",
-  "docker_registry": "https://index.docker.io/v1/",
+  "name": "ghcr.io/alove4tech/kasm-cyberchef",
+  "docker_registry": "https://ghcr.io",
   "image_src": "cyberchef.svg",
   "categories": [
     "Security",
@@ -33,7 +33,7 @@
   "compatibility": [
     {
       "version": "1.17.x",
-      "image": "kasmweb/chromium:1.17.0-rolling-daily",
+      "image": "ghcr.io/alove4tech/kasm-cyberchef:1.17.0-rolling-daily",
       "uncompressed_size_mb": 2967,
       "available_tags": [
         "develop",
@@ -44,7 +44,7 @@
     },
     {
       "version": "1.18.x",
-      "image": "kasmweb/chromium:1.18.0-rolling-daily",
+      "image": "ghcr.io/alove4tech/kasm-cyberchef:1.18.0-rolling-daily",
       "uncompressed_size_mb": 2967,
       "available_tags": [
         "develop",
@@ -54,6 +54,6 @@
       ]
     }
   ],
-  "notes": "Uses the multi-arch Kasm Chromium image and launches the official CyberChef static web app. Chromium manifests validated for linux/amd64 and linux/arm64.",
+  "notes": "Uses a thin multi-arch wrapper image based on kasmweb/chromium so Kasm treats this as a separate installable workspace instead of the already-installed Chromium image. The wrapper image is built and published by GitHub Actions for linux/amd64 and linux/arm64.",
   "arch": "amd64,arm64"
 }

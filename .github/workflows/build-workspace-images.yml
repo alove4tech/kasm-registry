@@ -1,0 +1,77 @@
+name: Build Workspace Images
+
+on:
+  push:
+    branches:
+      - '1.1'
+    paths:
+      - 'workspaces/Discord/image/**'
+      - 'workspaces/Discord/workspace.json'
+      - 'workspaces/CyberChef/image/**'
+      - 'workspaces/CyberChef/workspace.json'
+      - '.github/workflows/build-workspace-images.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - workspace: Discord
+            image: ghcr.io/alove4tech/kasm-discord
+            base_tag: 1.17.0-rolling-daily
+            tags: |
+              ghcr.io/alove4tech/kasm-discord:1.17.0
+              ghcr.io/alove4tech/kasm-discord:1.17.0-rolling-weekly
+              ghcr.io/alove4tech/kasm-discord:1.17.0-rolling-daily
+          - workspace: Discord
+            image: ghcr.io/alove4tech/kasm-discord
+            base_tag: 1.18.0-rolling-daily
+            tags: |
+              ghcr.io/alove4tech/kasm-discord:develop
+              ghcr.io/alove4tech/kasm-discord:1.18.0
+              ghcr.io/alove4tech/kasm-discord:1.18.0-rolling-weekly
+              ghcr.io/alove4tech/kasm-discord:1.18.0-rolling-daily
+          - workspace: CyberChef
+            image: ghcr.io/alove4tech/kasm-cyberchef
+            base_tag: 1.17.0-rolling-daily
+            tags: |
+              ghcr.io/alove4tech/kasm-cyberchef:1.17.0
+              ghcr.io/alove4tech/kasm-cyberchef:1.17.0-rolling-weekly
+              ghcr.io/alove4tech/kasm-cyberchef:1.17.0-rolling-daily
+          - workspace: CyberChef
+            image: ghcr.io/alove4tech/kasm-cyberchef
+            base_tag: 1.18.0-rolling-daily
+            tags: |
+              ghcr.io/alove4tech/kasm-cyberchef:develop
+              ghcr.io/alove4tech/kasm-cyberchef:1.18.0
+              ghcr.io/alove4tech/kasm-cyberchef:1.18.0-rolling-weekly
+              ghcr.io/alove4tech/kasm-cyberchef:1.18.0-rolling-daily
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: docker/setup-qemu-action@v3
+
+      - uses: docker/setup-buildx-action@v3
+
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/build-push-action@v6
+        with:
+          context: workspaces/${{ matrix.workspace }}/image
+          platforms: linux/amd64,linux/arm64
+          push: true
+          build-args: |
+            BASE_TAG=${{ matrix.base_tag }}
+          tags: ${{ matrix.tags }}

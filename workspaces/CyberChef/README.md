@@ -6,11 +6,12 @@ CyberChef is a browser-based utility for encoding, decoding, hashing, compressio
 
 - App: <https://gchq.github.io/CyberChef/>
 - Source: <https://github.com/gchq/CyberChef>
-- Runtime image: `kasmweb/chromium`
+- Runtime image: `ghcr.io/alove4tech/kasm-cyberchef`
+- Base image family: `kasmweb/chromium`
 
 ## Architecture support
 
-This workspace uses Kasm's Chromium image instead of a CyberChef-specific server image so it remains a standard Kasm desktop workspace. The selected Chromium tags have been verified as multi-arch Docker manifests with:
+This workspace uses a thin, multi-arch wrapper image based on Kasm's Chromium image so Kasm sees CyberChef as its own installable workspace instead of the already-installed Chromium image. The wrapper is built for:
 
 - `linux/amd64`
 - `linux/arm64`
@@ -19,8 +20,8 @@ That keeps it suitable for both x86 hosts and Oracle Free Tier ARM64/Ampere inst
 
 ## Kasm compatibility
 
-- `1.17.x`: `kasmweb/chromium:1.17.0-rolling-daily`
-- `1.18.x`: `kasmweb/chromium:1.18.0-rolling-daily`
+- `1.17.x`: `ghcr.io/alove4tech/kasm-cyberchef:1.17.0-rolling-daily`
+- `1.18.x`: `ghcr.io/alove4tech/kasm-cyberchef:1.18.0-rolling-daily`
 
 The workspace launches Chromium directly to the official CyberChef static app:
 
