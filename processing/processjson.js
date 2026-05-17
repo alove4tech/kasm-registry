@@ -31,6 +31,19 @@ if (!fs.existsSync(iconsDir)) {
 
 	const channels = new Set()
 	const versions = new Set()
+	const compareVersions = (a, b) => {
+		const parse = (value) => String(value).replace(/\.x$/, '').split('.').map((part) => Number(part) || 0);
+		const left = parse(a);
+		const right = parse(b);
+		const length = Math.max(left.length, right.length);
+		for (let index = 0; index < length; index += 1) {
+			const diff = (left[index] || 0) - (right[index] || 0);
+			if (diff !== 0) {
+				return diff;
+			}
+		}
+		return String(a).localeCompare(String(b));
+	};
 
 	for (const file of files) {
 
@@ -72,6 +85,11 @@ if (!fs.existsSync(iconsDir)) {
 			continue;
 		}
 
+		if (!Array.isArray(parsed.compatibility) || parsed.compatibility.length === 0) {
+			errors.push(`${file}: missing compatibility entries`);
+			continue;
+		}
+
 		console.log(parsed.friendly_name + ' added')
 		parsed.compatibility.forEach((element) => {
 			if ('available_tags' in element) {
@@ -96,6 +114,10 @@ if (!fs.existsSync(iconsDir)) {
 
 	}
 
+	workspaces.sort((a, b) => a.friendly_name.localeCompare(b.friendly_name));
+	const sortedChannels = [...channels].sort();
+	const sortedVersions = [...versions].sort(compareVersions).reverse();
+
 	const json = {
 		name: nextConfig.env.name || 'Unknown store',
 		workspacecount: workspaces.length,
@@ -105,8 +127,8 @@ if (!fs.existsSync(iconsDir)) {
 		contact_url: nextConfig.env.contactUrl || null,
 		modified: Date.now(),
 		workspaces: workspaces,
-		channels: [...channels],
-		default_channel: channels.has('develop') ? 'develop' : (channels.size > 0 ? [...channels][0] : null)
+		channels: sortedChannels,
+		default_channel: channels.has('develop') ? 'develop' : (sortedChannels.length > 0 ? sortedChannels[0] : null)
 	};
 
 	if (errors.length > 0) {
@@ -121,6 +143,6 @@ if (!fs.existsSync(iconsDir)) {
 
 	fs.writeFileSync(path.join(publicDir, "list.json"), data);
 	fs.writeFileSync(path.join(publicDir, "versions.json"), JSON.stringify({
-		versions: [...versions]
+		versions: sortedVersions
 	}, null, 2) + "\n");
 })();

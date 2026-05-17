@@ -31,7 +31,7 @@ touch base/.nojekyll
 
 # Fetch only from origin to avoid pulling Gitea or other remote branches
 echo "Fetching from ${REMOTE}..."
-git fetch "$REMOTE"
+git fetch --prune "$REMOTE"
 
 VERSION_BRANCHES=$(git branch --remotes --format '%(refname:lstrip=2)' | grep -E "^${REMOTE}/[0-9]+\.[0-9]+$" | sed "s|^${REMOTE}/||" || true)
 
@@ -49,7 +49,7 @@ for BRANCH in $VERSION_BRANCHES; do
     echo "Building branch: $BRANCH (sanitized: $SANITIZED_BRANCH)"
     echo "$SANITIZED_BRANCH" >> base/versions.txt
 
-    git checkout --force "$BRANCH"
+    git checkout --force --detach "$REMOTE/$BRANCH"
 
     if ! node processing; then
         echo "WARNING: processing failed for $BRANCH, skipping" >&2

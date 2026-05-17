@@ -4,7 +4,7 @@ This directory contains the helper scripts that turn workspace definitions into 
 
 ## What lives here
 
-- `processjson.js` builds the registry metadata from the checked-in workspace folders
+- `processjson.js` builds the registry metadata from the checked-in workspace folders, validates required generation fields, and emits a stable alphabetized workspace list
 - `get_image_sizes.js` gathers image sizing details used during generation
 - `add_next_version.js` helps scaffold the next version branch when the registry needs to roll forward
 - `update_1_0_to_1_1.js` captures the version bump work that moved older data into the current layout
