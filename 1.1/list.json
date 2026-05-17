@@ -5,7 +5,7 @@
   "description": "ARM-first Kasm workspace registry from Alove4Tech for Oracle Ampere and other ARM64 deployments.",
   "list_url": "https://alove4tech.github.io/kasm-registry/",
   "contact_url": "https://github.com/alove4tech/kasm-registry/issues",
-  "modified": 1778815394061,
+  "modified": 1778979785009,
   "workspaces": [
     {
       "description": "CyberChef web app launched in Chromium for encoding, decoding, hashing, and data inspection on ARM64 and AMD64 Kasm deployments.",
@@ -473,13 +473,13 @@
     }
   ],
   "channels": [
-    "develop",
     "1.17.0",
-    "1.17.0-rolling-weekly",
     "1.17.0-rolling-daily",
+    "1.17.0-rolling-weekly",
     "1.18.0",
+    "1.18.0-rolling-daily",
     "1.18.0-rolling-weekly",
-    "1.18.0-rolling-daily"
+    "develop"
   ],
   "default_channel": "develop"
 }
