@@ -5,7 +5,7 @@
   "description": "ARM-first Kasm workspace registry from Alove4Tech for Oracle Ampere and other ARM64 deployments.",
   "list_url": "https://alove4tech.github.io/kasm-registry/",
   "contact_url": "https://github.com/alove4tech/kasm-registry/issues",
-  "modified": 1779037595081,
+  "modified": 1779039629643,
   "workspaces": [
     {
       "description": "CyberChef web app launched in Chromium for encoding, decoding, hashing, and data inspection on ARM64 and AMD64 Kasm deployments.",
@@ -65,7 +65,7 @@
       ],
       "notes": "Uses a thin multi-arch wrapper image based on kasmweb/chromium so Kasm treats this as a separate installable workspace instead of the already-installed Chromium image. The wrapper image is built and published by GitHub Actions for linux/amd64 and linux/arm64.",
       "arch": "amd64,arm64",
-      "sha": "bbec837675309fd1a45f3363b40ad66d656eb255"
+      "sha": "60385bae332029774f60fab403ca07d9efc371f7"
     },
     {
       "description": "Discord web app launched in Chromium for communication on ARM64 and AMD64 Kasm deployments.",
@@ -124,7 +124,7 @@
       ],
       "notes": "Uses a thin multi-arch wrapper image based on kasmweb/chromium so Kasm treats this as a separate installable workspace instead of the already-installed Chromium image. The wrapper image is built and published by GitHub Actions for linux/amd64 and linux/arm64.",
       "arch": "amd64,arm64",
-      "sha": "8f7ccbe7d13dc3159576ddc29fc1f240e8f51862"
+      "sha": "ee08817187e0ff5be8135aca03a1a4fc822a28f4"
     },
     {
       "description": "Firefox was created by Mozilla as a faster, more private browser and is packaged here for ARM64 Kasm deployments.",
