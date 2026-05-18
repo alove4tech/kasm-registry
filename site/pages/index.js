@@ -9,6 +9,24 @@ export default function Home({ searchText }) {
   const [versions, setVersions] = useState(null)
   const [version, setVersion] = useState(null)
 
+  const normalizeVersion = (value) => String(value || '').replace(/\.x$/, '')
+
+  const compareVersions = (a, b) => {
+    const parse = (value) => normalizeVersion(value).split('.').map((part) => Number(part) || 0)
+    const left = parse(a)
+    const right = parse(b)
+    const length = Math.max(left.length, right.length)
+
+    for (let index = 0; index < length; index += 1) {
+      const diff = (left[index] || 0) - (right[index] || 0)
+      if (diff !== 0) {
+        return diff
+      }
+    }
+
+    return normalizeVersion(a).localeCompare(normalizeVersion(b))
+  }
+
   useEffect(() => {
     let currentVersion = localStorage.getItem("version") || null
     fetch('list.json')
@@ -19,23 +37,22 @@ export default function Home({ searchText }) {
         return res.json();
       })
       .then((workspaces) => {
-        let wsversions = []
+        const wsversions = new Set()
         workspaces.workspaces.forEach((workspace) => {
           if(workspace.compatibility) {
             workspace.compatibility.forEach((v) => {
-              const value = parseFloat(v.version)
-              if(wsversions.indexOf(value) === -1) {
-                wsversions.push(value)
-              }
+              wsversions.add(normalizeVersion(v.version))
             })
           }
         })
-        const sorted = wsversions.sort((a,b) => a-b).reverse()
+        const sorted = [...wsversions].sort(compareVersions).reverse()
 
         setVersions(sorted)
-        if (currentVersion === null) {
-          currentVersion = sorted[0]
-          localStorage.setItem("version", currentVersion);
+        if (currentVersion === null || !sorted.includes(currentVersion)) {
+          currentVersion = sorted[0] || null
+          if (currentVersion !== null) {
+            localStorage.setItem("version", currentVersion);
+          }
         }
         setVersion(currentVersion)
         setWorkspaces(workspaces)
@@ -51,7 +68,7 @@ export default function Home({ searchText }) {
   }
 
   let filteredworkspaces = workspaces && workspaces.workspaces && workspaces.workspaces.length > 0 ? [...workspaces.workspaces] : [];
-  filteredworkspaces = filteredworkspaces.filter((v) => v.compatibility.some((el) => el.version === version + '.x'))
+  filteredworkspaces = filteredworkspaces.filter((v) => v.compatibility.some((el) => normalizeVersion(el.version) === version))
   const lowerSearch = searchText && searchText.toLowerCase();
   if (searchText && searchText !== "") {
     filteredworkspaces = filteredworkspaces.filter((i) => {

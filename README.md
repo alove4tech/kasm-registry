@@ -45,7 +45,7 @@ workspaces/
 | Workspace | Architecture | Status | Notes |
 |---|---|---|---|
 | CyberChef | amd64, arm64 | Enabled | Security/data analysis in Chromium |
-| Discord | arm64 | Disabled | Custom image not yet built |
+| Discord | amd64, arm64 | Enabled | Lightweight Discord Web wrapper image |
 | Firefox | arm64 | Enabled | Browser workspace |
 | Kali Linux | arm64 | Enabled | Security testing desktop |
 | LibreOffice | arm64 | Enabled | Productivity suite |
